@@ -1,0 +1,1238 @@
+{
+	"textures": [
+		{
+			"image": "assets/sprites/blood/Front_1.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 2048,
+				"h": 4096
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "bleed_0",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+				{
+					"filename": "bleed_1",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_2",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_3",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_4",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_5",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_6",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_7",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_8",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_9",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_10",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_11",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_12",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_13",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_14",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_15",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_16",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 512,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_17",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_18",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_19",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_20",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_21",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_22",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_23",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_24",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 1024,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_25",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_26",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_27",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+                },
+                    {
+                        "filename": "bleed_28",
+                        "rotated": false,
+                        "trimmed": false,
+                        "sourceSize": {
+                            "w": 256,
+                            "h": 512
+                        },
+                        "spriteSourceSize": {
+                            "x": 0,
+                            "y": 0,
+                            "w": 256,
+                            "h": 512
+                        },
+                        "frame": {
+                            "x": 1024,
+                            "y": 1536,
+                            "w": 256,
+                            "h": 512
+                        }
+                    },
+				
+                {
+					"filename": "bleed_29",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_30",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_31",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 1536,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_32",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_33",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_34",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_35",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_36",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_37",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_38",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_39",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 2048,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_40",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_41",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_42",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_43",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_44",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_45",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_46",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_47",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 2560,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_48",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_49",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 256,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_50",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 512,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_51",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 768,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_52",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1024,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_53",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1280,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_54",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1536,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_55",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 1792,
+						"y": 3072,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_56",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 3584,
+						"w": 256,
+						"h": 512
+					}
+				},
+                {
+					"filename": "bleed_57",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 256,
+						"h": 512
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 256,
+						"h": 512
+					},
+					"frame": {
+						"x": 0,
+						"y": 3584,
+						"w": 256,
+						"h": 512
+					}
+				}
+	]
+}
+    ],
+	"meta": {
+		"app": "No app. I wrote this bad boy myself."
+		
+	}
+}
