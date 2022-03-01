@@ -4,6 +4,7 @@ let gameScene = new Phaser.Scene('Game');
 
 gameScene.init = function(){
    this.iggleAnimations=iggleAnimations; 
+   this.iggleLoadingScreen=iggleLoadingScreen;
 this.shooting=false;
 this.gibs=this.add.group();
 };
@@ -18,7 +19,7 @@ this.load.atlas('blood4', ['assets/sprites/blood/Front_11.png','assets/sprites/b
 this.load.atlas('blood5', ['assets/sprites/blood/Front_13.png','assets/sprites/blood/Front_13_n.png'], 'assets/sprites/blood/Front_1.json');
 this.load.image('sky5', 'assets/backgrounds/forestHunt/Sky05.png');
 this.load.unityAtlas('squatch2', 'assets/sprites/squatch/character_idle.png','assets/sprites/squatch/character_idle.png.meta');
-
+ this.iggleLoadingScreen('Loading Sandbox...')
 }
 
    
@@ -53,7 +54,7 @@ gameScene.create = function(){
           frameRate: 15
       });
 
-   this.lights.enable().setAmbientColor(0xf0ff0f);
+   this.lights.enable().setAmbientColor(0x000000);
    this.anims.create({
       key:'bleed1',
       frames: this.anims.generateFrameNames('blood1', { prefix: 'bleed_', start:0,end: 57 }),

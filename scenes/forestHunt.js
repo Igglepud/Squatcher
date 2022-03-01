@@ -7,6 +7,7 @@ forestHuntScene.init=function(){
   this.loadForest=iggleLoadForest;
   this.createForest=iggleCreateForest;
   this.animations=iggleAnimations;
+  this.iggleLoadingScreen=iggleLoadingScreen;
   this.cameraBobY=Phaser.Math.Between(-15,15);
   this.cameraBobX=Phaser.Math.Between(-15,15);
   this.cameraRotationBob=Phaser.Math.Between(-1,1);
@@ -19,8 +20,7 @@ forestHuntScene.init=function(){
 forestHuntScene.preload=function(){
 
 this.loadForest();
-
-
+  this.iggleLoadingScreen('Loading forest...');
 
 
 
