@@ -57,29 +57,32 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
 
     this.lights.enable().setAmbientColor('0x000000');
     this.sun=this.lights.addLight(this.truck.x-Phaser.Math.Between(300,1000),Phaser.Math.Between(0,this.gameH/2),1000000000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
-  
+    this.bg1 = this.add.tileSprite(4093/8,this.gameH-150, 1*4093, 1*1339, 'bg1').setScale(.25).setDepth(7).setPipeline('Light2D') ; 
+    this.bg2 = this.add.tileSprite(3403/8,this.gameH-250, 1*3403, 1*2046, 'bg2').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
+    this.bg3 = this.add.tileSprite(7265/8,this.gameH-450, 1*7265, 1*2446, 'bg3').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
+
    
-    this.bg1=this.add.sprite(0,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
-    this.bg1Copy=this.add.sprite(4093/4,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
+    // this.bg1=this.add.sprite(0-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
+    // this.bg1Copy=this.add.sprite((4093/4)-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
 
-    this.bg2=this.add.sprite(0,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
-    this.bg2Copy=this.add.sprite(3403/4,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
+    // this.bg2=this.add.sprite(0-this.truck.x,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
+    // this.bg2Copy=this.add.sprite((3403/4)-this.truck.x,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
 
-    this.bg3=this.add.sprite(0,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
-    this.bg3Copy=this.add.sprite(7265/4,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
+    // this.bg3=this.add.sprite(0-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
+    // this.bg3Copy=this.add.sprite((7265/4)-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
 //this.cameras.main.zoom=.2;
 this.falling=false;
 
 };
 
 drivingScene.update = function(){
- this.bg1.x-=10;this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
- if(this.bg1.x+this.truck.x<=-4093/4){this.bg1.x=(4093/4)};
- if(this.bg1Copy.x+this.truck.x<=-4093/4){this.bg1Copy.x=(4093/4)};
- if(this.bg2.x+this.truck.x<=-3403/4){this.bg2.x=(3403/4)-1};
- if(this.bg2Copy.x+this.truck.x<=-3403/4){this.bg2Copy.x=(3403/4)-1};
- if(this.bg3.x+this.truck.x<=-7265/4){this.bg3.x=(7265/4)};
- if(this.bg3Copy.x+this.truck.x<=7265/4){this.bg3Copy.x=(7265/4)};
+ this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=10;this.bg3.tilePositionX+=10;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
+//  if(this.bg1.x-20<=-4093/4){this.bg1.x=(4093/4)};
+//  if(this.bg1Copy.x-20<=-4093/4){this.bg1Copy.x=(4093/4)};
+//  if(this.bg2.x-20<=-3403/4){this.bg2.x=(3403/4)-1};
+//  if(this.bg2Copy.x-20<=-3403/4){this.bg2Copy.x=(3403/4)-1};
+//  if(this.bg3.x-20<=-7265/4){this.bg3.x=(7265/4)};
+//  if(this.bg3Copy.x-20<=7265/4){this.bg3Copy.x=(7265/4)};
 
 //if(this.sun.y<-1000&&this.falling==false){this.sun.x++,this.sun.y++, this.falling=true;}else{this.sun.x++,this.sun.y--};
 
