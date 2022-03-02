@@ -1,11 +1,23 @@
 // set game configuration
+var isMobile = navigator.userAgent.indexOf("Mobile");
+var w = 800;
+var h = 600;
 
 
-
+window.onload = function() {
+    if (isMobile == -1) {
+        isMobile = navigator.userAgent.indexOf("Tablet");
+    };
+    
+    if (isMobile != -1) {
+        w = window.innerWidth;
+        h = window.innerHeight;
+    };
+};
 let config = {
     type: Phaser.WEBGL,
-    width: 800,
-    height: 600,
+    width: w,
+    height: h,
     scene: [preloadScene, titleScene, gameScene, gameoverScene,forestHuntScene,drivingScene],
     pixelArt: false,
     mode:Phaser.Scale.FIT,

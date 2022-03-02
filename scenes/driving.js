@@ -40,15 +40,12 @@ drivingScene.create = function(){
     this.hunter=this.add.sprite(this.truck.x+5,this.truck.y-35,'hunter').play('hunterIdleSide').setPipeline('Light2D');
     this.hunter.flipX=true;
     this.hunter.setScale(.4);
-    this.hunter.depth=9;
-this.hunterArm=this.add.sprite(this.hunter.x,this.hunter.y,'hunterRifle','rifle_1');
+    this.hunter.depth=7;
+this.hunterArm=this.add.sprite(this.hunter.x,this.hunter.y,'hunterRifle','rifle_1').setPipeline('Light2D');
 this.hunterArm.depth=9;
-this.hunterArm.visible=false;
-this.hunterArm.setPipeline('Light2D');
-this.hunterArm.depth=9;
-this.hunterArm.visible=false;
-this.hunterArm.setPipeline('Light2D');
-this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').setScale(.4).setPipeline('Light2D').setDepth(8);
+this.hunterArm.flipX=true;
+this.hunterArm.setScale(.4);
+this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').setScale(.15).setPipeline('Light2D').setDepth(8).setAngle(180).setPosition(this.hunterArm.x+20, this.hunterArm.y+10);
 
     
     //create backgrounds
@@ -57,9 +54,9 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
 
     this.lights.enable().setAmbientColor('0x000000');
     this.sun=this.lights.addLight(this.truck.x-Phaser.Math.Between(300,1000),Phaser.Math.Between(0,this.gameH/2),1000000000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
-    this.bg1 = this.add.tileSprite(4093/8,this.gameH-150, 1*4093, 1*1339, 'bg1').setScale(.25).setDepth(7).setPipeline('Light2D') ; 
-    this.bg2 = this.add.tileSprite(3403/8,this.gameH-250, 1*3403, 1*2046, 'bg2').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
-    this.bg3 = this.add.tileSprite(7265/8,this.gameH-450, 1*7265, 1*2446, 'bg3').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
+    this.bg1 = this.add.tileSprite(4093/8,this.gameH-50, 1*4093, 1*1340, 'bg1').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
+    this.bg2 = this.add.tileSprite(3403/8,this.gameH-200, 1*3403, 1*2046, 'bg2').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
+    this.bg3 = this.add.tileSprite(7265/8,this.gameH-400, 1*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
 
    
     // this.bg1=this.add.sprite(0-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
@@ -70,24 +67,90 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
 
     // this.bg3=this.add.sprite(0-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
     // this.bg3Copy=this.add.sprite((7265/4)-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
-//this.cameras.main.zoom=.2;
+
+    this.truckTween=this.tweens.add({
+        targets: [ this.truck, ],
+        x: {
+
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
+
+        },
+        y: {
+
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
+
+        },
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
+    this.wheelsTween=this.tweens.add({
+        targets: [ this.leftWheel,this.rightWheel ],
+        x: {
+
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
+
+        },
+        y: {
+
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 0);
+            }
+
+        },
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
+
+    this.armTween=this.tweens.add({
+        targets: [ this.hunterArm, ],
+       angle:-90,
+        ease: 'Power1',
+        duration: 2000,
+        yoyo: true,
+        repeat: -1
+    });
+
+    //this.cameras.main.zoom=.2;
 this.falling=false;
+
+this.cursors=this.input.keyboard.createCursorKeys();
+
+this.shape=new Phaser.Geom.Rectangle(this, this.truck.x+100, this.truck.y [300], [100], [0x000000] [1]);
+this.physics.add.existing(this.shape);
+this.shape.body.allowGravity=false;
+this.shape.angle=-45;
+this.shape.depth=11;
 
 };
 
 drivingScene.update = function(){
- this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=10;this.bg3.tilePositionX+=10;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
-//  if(this.bg1.x-20<=-4093/4){this.bg1.x=(4093/4)};
-//  if(this.bg1Copy.x-20<=-4093/4){this.bg1Copy.x=(4093/4)};
-//  if(this.bg2.x-20<=-3403/4){this.bg2.x=(3403/4)-1};
-//  if(this.bg2Copy.x-20<=-3403/4){this.bg2Copy.x=(3403/4)-1};
-//  if(this.bg3.x-20<=-7265/4){this.bg3.x=(7265/4)};
-//  if(this.bg3Copy.x-20<=7265/4){this.bg3Copy.x=(7265/4)};
+ this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=.2;this.bg3.tilePositionX+=.01;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
+
 
 //if(this.sun.y<-1000&&this.falling==false){this.sun.x++,this.sun.y++, this.falling=true;}else{this.sun.x++,this.sun.y--};
-
-   this.leftWheel.rotation+=.01;
-   this.rightWheel.rotation+=.01;
+this.truckback.setPosition(this.truck.x-126,this.truck.y-28);
+this.hunter.setPosition(this.truck.x+5,this.truck.y-35);
+this.hunterArm.setPosition(this.hunter.x-10,this.hunter.y+10);
+this.chickenLeg.setPosition(this.hunterArm.x+20, this.hunterArm.y+10);
+   this.leftWheel.rotation+=.1;
+   this.rightWheel.rotation+=.1;
    console.log(this.sun.x,this.sun.y)
    iggleResize();
+   if(this.cursors.left.isDown){this.truck.x--};
+   if(this.cursors.right.isDown){this.truck.x++};
+
 };
