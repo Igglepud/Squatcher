@@ -24,6 +24,7 @@ this.load.image('bg4',['assets/backgrounds/driving/desert/bg4.png','assets/backg
 this.load.image('bg1',['assets/backgrounds/driving/desert/bg5.png','assets/backgrounds/driving/desert/bg5_n.png']);
 this.load.image('bg6',['assets/backgrounds/driving/desert/bg6.png','assets/backgrounds/driving/desert/bg6_n.png']);
 this.loadingScreen('Loading your drive through the desert...');
+this.load.image('streetLine','assets/backgrounds/driving/desert/streetLine.png')
 };
 
 drivingScene.create = function(){
@@ -59,116 +60,101 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
     this.bg3 = this.add.tileSprite(0,this.gameH-400, 5*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
 
    
-    // this.bg1=this.add.sprite(0-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
-    // this.bg1Copy=this.add.sprite((4093/4)-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
+  
+    // this.truckTween=this.tweens.add({
+    //     targets: [ this.truck, ],
+    //     x: {
 
-    // this.bg2=this.add.sprite(0-this.truck.x,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
-    // this.bg2Copy=this.add.sprite((3403/4)-this.truck.x,this.gameH-250,'bg2').setScale(.25).setDepth(6).setPipeline('Light2D');
+    //         getEnd: function (target, key, value)
+    //         {
+    //             return value + Phaser.Math.Between(-15, 15);
+    //         }
 
-    // this.bg3=this.add.sprite(0-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
-    // this.bg3Copy=this.add.sprite((7265/4)-this.truck.x,this.gameH-450,'bg3').setScale(.25).setDepth(5).setPipeline('Light2D');
+    //     },
+    //     y: {
 
-    this.truckTween=this.tweens.add({
-        targets: [ this.truck, ],
-        x: {
+    //         getEnd: function (target, key, value)
+    //         {
+    //             return value + Phaser.Math.Between(-15, 15);
+    //         }
 
-            getEnd: function (target, key, value)
-            {
-                return value + Phaser.Math.Between(-15, 15);
-            }
+    //     },
+    //     angle:{
+    //         getEnd: function (target, key, value)
+    //         {
+    //             return value + Phaser.Math.Between(-45, 45);
+    //         }
+    //     },
+    //     ease: 'Power1',
+    //     duration: 35,
+    //     yoyo: true,
+    //     repeat: -1
+    // });
+    // this.truckBackTween=this.tweens.add({
+    //     targets: [ this.truckback, ],
+    //     x: this.truck.x-126,
+    //     y: this.truck.y-28,
+    //     angle:this.truck.angle,
+    //     ease: 'Power1',
+    //     duration: 35,
+    //     yoyo: true,
+    //     repeat: -1
+    // });
+    // this.wheelsTween=this.tweens.add({
+    //     targets: [ this.leftWheel,this.rightWheel ],
+    //     x: {
 
-        },
-        y: {
+    //         getEnd: function (target, key, value)
+    //         {
+    //             return value + Phaser.Math.Between(-15, 15);
+    //         }
 
-            getEnd: function (target, key, value)
-            {
-                return value + Phaser.Math.Between(-15, 15);
-            }
+    //     },
+    //     y: {
 
-        },
-        angle:{
-            getEnd: function (target, key, value)
-            {
-                return value + Phaser.Math.Between(-45, 45);
-            }
-        },
-        ease: 'Power1',
-        duration: 35,
-        yoyo: true,
-        repeat: -1
-    });
-    this.truckBackTween=this.tweens.add({
-        targets: [ this.truckback, ],
-        x: this.truck.x-126,
-        y: this.truck.y-28,
-        angle:this.truck.angle,
-        ease: 'Power1',
-        duration: 35,
-        yoyo: true,
-        repeat: -1
-    });
-    this.wheelsTween=this.tweens.add({
-        targets: [ this.leftWheel,this.rightWheel ],
-        x: {
+    //         getEnd: function (target, key, value)
+    //         {
+    //             return value + Phaser.Math.Between(-15, 0);
+    //         }
 
-            getEnd: function (target, key, value)
-            {
-                return value + Phaser.Math.Between(-15, 15);
-            }
+    //     },
+    //     ease: 'Power1',
+    //     duration: 35,
+    //     yoyo: true,
+    //     repeat: -1
+    // });
 
-        },
-        y: {
-
-            getEnd: function (target, key, value)
-            {
-                return value + Phaser.Math.Between(-15, 0);
-            }
-
-        },
-        ease: 'Power1',
-        duration: 35,
-        yoyo: true,
-        repeat: -1
-    });
-
-    this.armTween=this.tweens.add({
-        targets: [ this.hunterArm, ],
-       angle:-90,
-        ease: 'Power1',
-        duration: 2000,
-        yoyo: true,
-        repeat: -1
-    });
+    // this.armTween=this.tweens.add({
+    //     targets: [ this.hunterArm, ],
+    //    angle:-90,
+    //     ease: 'Power1',
+    //     duration: 2000,
+    //     yoyo: true,
+    //     repeat: -1
+    // });
 
     //this.cameras.main.zoom=.2;
 this.falling=false;
 
 this.cursors=this.input.keyboard.createCursorKeys();
-//rectangle
-this.shape = new Phaser.Geom.Rectangle(this.truck.x+300, 500, 300, 200);
-
-    var graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
-
-    
-    this.physics.add.existing(this.shape);
-this.shape.body.allowGravity=false;
-this.shape.angle=-45;
-this.shape.depth=110;
 
 
+//create road
+this.road=this.add.rectangle(this.truck.x+300,850,1600,200,0x000000).setDepth(this.rightWheel.depth-1);
+this.streetLine=this.add.tileSprite(this.truck.x,this.road.y-50, 20*128,1*128, 'streetLine').setDepth(this.road.depth);
 };
 
 drivingScene.update = function(){
  this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=.2;this.bg3.tilePositionX+=.01;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
-
+this.streetLine.tilePositionX+=3;
 
 //if(this.sun.y<-1000&&this.falling==false){this.sun.x++,this.sun.y++, this.falling=true;}else{this.sun.x++,this.sun.y--};
 this.truckback.setPosition(this.truck.x-126,this.truck.y-28);
 this.hunter.setPosition(this.truck.x+5,this.truck.y-35);
 this.hunterArm.setPosition(this.hunter.x-10,this.hunter.y+10);
 this.chickenLeg.setPosition(this.hunterArm.x+20, this.hunterArm.y+10);
-   this.leftWheel.rotation+=.1;
-   this.rightWheel.rotation+=.1;
+   this.leftWheel.rotation+=.3;
+   this.rightWheel.rotation+=.3;
    console.log(this.sun.x,this.sun.y)
    iggleResize();
    if(this.cursors.left.isDown){this.truck.x--};

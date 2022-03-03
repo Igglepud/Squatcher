@@ -27,14 +27,13 @@ this.loadForest();
 };
 // create after preload
 forestHuntScene.create = function(){
+  this.animations('squatch');
 this.createForest();
-console.log(this.cameras.main)
 //scope or minimap
 this.scope=this.add.circle(300, 500, 200, 0x000000);
-this.scopeCam=this.cameras.add(0, 0, 1600, 900);
-this.scopeBounds = Phaser.Geom.Circle.GetBounds(this.scope);
-this.scopeCam.ignore(-this.scopeBounds);
-this.scopeCam.zoom=3
+this.scopeCam=this.cameras.add(0, 0, 1600, 0);
+this.scopeCam.zoom=3;
+this.cameras.main.ignore(this.scope);
 };
 
 
@@ -73,7 +72,15 @@ if(this.cameras.main.zoom<1.6&&this.cameras.main.zoom>1.4){this.hunter.depth=7};
 if(this.cameras.main.zoom<1.4&&this.cameras.main.zoom>1.2){this.hunter.depth=8};
 if(this.cameras.main.zoom<1.2){this.hunter.depth=100};
 if(this.hunter.depth<=this.squatch.depth&&this.spotted==false){this.squatch.visible=false}else{this.squatch.visible=true};
-this.scopeBounds = Phaser.Geom.Circle.GetBounds(this.scope);
-this.scopeCam.ignore(-this.scopeBounds);
+if(this.scope.contains(this.squatch.x)){alert()};
+let allObjects = this.sys.displayList.getChildren();
+let numAllObjects=allObjects.length;
+for(i=0;i<numAllObjects;i++){
+  if(!this.scope.contains(allObjects[i].getBounds())){
+    this.scopeCam.ignore(allObjects[i])
+
+  };
+};
+
 iggleResize();
 };

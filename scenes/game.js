@@ -179,13 +179,51 @@ bloodNumber=Phaser.Math.Between(1,5);
         this.gibs.add(img);
          }
     
-console.log(this.textures)
 
       };
    let gibs=this.gibs.getChildren();
    let numGibs=gibs.length;
    for(i=0;i<numGibs;i++){
       gibs[i].depth=this.blood.depth-1;
+
+       //  The origin is the top-left of the bullet
+       let bx = gibs[i].x;
+       let by = gibs[i].y;
+
+
+        //  Get the texture size
+        let width = gibs[i].textures.getFrame().width;
+        let height = gibs[i].textures.getFrame().height;
+
+        //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
+        let renderTexture = gibs[i].add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
+       let bounds = renderTexture.getBounds();
+       gibs[i].renderTexture = renderTexture;
+
+       //  Floor because we're working with integers for pixel reading
+       const left = Math.floor(Math.max(bounds.left, bx) - bounds.x);
+       const right = Math.floor(Math.min(bounds.right - 1, bx + width) - bounds.x);
+       const top = Math.floor(Math.max(bounds.top, by) - bounds.y);
+       const bottom = Math.floor(bounds.bottom - bounds.y - 1);
+       const knockback = Math.floor(height / 1.2);
+
+       //  Scan each pixel for the size of the bullet
+       for (let y = bottom; y > top; y--)
+       {
+           for (let x = left; x < right; x++)
+           {
+               this.hitTexture.getPixel(x, y, gibs[i].pixel);
+
+               //  If this pixel has an alpha > 0 then our bullet hit the texture
+               if (gibs[i].pixel.alpha > 0)
+               {
+                   bx = Math.floor(bx - bounds.x);
+
+                   //  Erase a bullet-sized chunk from the RenderTexture
+                   this.renderTexture.erase(this, bx, y - knockback);
+               };
+            };
+         };
       gibs[i].moveTween=this.tweens.add({
          targets:gibs[i],
           duration:Phaser.Math.Between(250,300),
