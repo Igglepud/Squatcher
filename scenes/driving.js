@@ -49,14 +49,14 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
 
     
     //create backgrounds
-    this.sky=this.add.sprite(this.gameW/2,this.gameH/2-200,'sky').setDepth(-99).setScale(.3).setPipeline('Light2D');
+    this.sky=this.add.tileSprite(0,this.gameH/2-200, 5*4093, 1*2894,'sky').setDepth(-99).setScale(.3).setPipeline('Light2D');
 
 
     this.lights.enable().setAmbientColor('0x000000');
     this.sun=this.lights.addLight(this.truck.x-Phaser.Math.Between(300,1000),Phaser.Math.Between(0,this.gameH/2),1000000000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
-    this.bg1 = this.add.tileSprite(4093/8,this.gameH-50, 1*4093, 1*1340, 'bg1').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
-    this.bg2 = this.add.tileSprite(3403/8,this.gameH-200, 1*3403, 1*2046, 'bg2').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
-    this.bg3 = this.add.tileSprite(7265/8,this.gameH-400, 1*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
+    this.bg1 = this.add.tileSprite(0,this.gameH-50, 5*4093, 1*1340, 'bg1').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
+    this.bg2 = this.add.tileSprite(0,this.gameH-200, 5*3403, 1*2046, 'bg2').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
+    this.bg3 = this.add.tileSprite(0,this.gameH-400, 5*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
 
    
     // this.bg1=this.add.sprite(0-this.truck.x,this.gameH-150,'bg1').setScale(.25).setDepth(7).setPipeline('Light2D')
@@ -86,6 +86,22 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
             }
 
         },
+        angle:{
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-45, 45);
+            }
+        },
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
+    this.truckBackTween=this.tweens.add({
+        targets: [ this.truckback, ],
+        x: this.truck.x-126,
+        y: this.truck.y-28,
+        angle:this.truck.angle,
         ease: 'Power1',
         duration: 35,
         yoyo: true,
@@ -128,12 +144,17 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
 this.falling=false;
 
 this.cursors=this.input.keyboard.createCursorKeys();
+//rectangle
+this.shape = new Phaser.Geom.Rectangle(this.truck.x+300, 500, 300, 200);
 
-this.shape=new Phaser.Geom.Rectangle(this, this.truck.x+100, this.truck.y [300], [100], [0x000000] [1]);
-this.physics.add.existing(this.shape);
+    var graphics = this.add.graphics({ fillStyle: { color: 0x0000ff } });
+
+    
+    this.physics.add.existing(this.shape);
 this.shape.body.allowGravity=false;
 this.shape.angle=-45;
-this.shape.depth=11;
+this.shape.depth=110;
+
 
 };
 

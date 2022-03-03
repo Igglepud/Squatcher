@@ -1,7 +1,7 @@
 // set game configuration
 var isMobile = navigator.userAgent.indexOf("Mobile");
-var w = 800;
-var h = 600;
+var w = 1600;
+var h = 900;
 
 
 window.onload = function() {
@@ -26,7 +26,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 1000},
-            //debug: true,
+            debug: true,
         }
     },
 
