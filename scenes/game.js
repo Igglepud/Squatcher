@@ -190,13 +190,13 @@ bloodNumber=Phaser.Math.Between(1,5);
        let bx = gibs[i].x;
        let by = gibs[i].y;
 
-
+console.log(gibs[i]);
         //  Get the texture size
-        let width = gibs[i].textures.getFrame().width;
-        let height = gibs[i].textures.getFrame().height;
-
+        let width = gibs[i].width;
+        let height = gibs[i].height;
+let frame='squatch'
         //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
-        let renderTexture = gibs[i].add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
+        let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
        let bounds = renderTexture.getBounds();
        gibs[i].renderTexture = renderTexture;
 
@@ -212,7 +212,7 @@ bloodNumber=Phaser.Math.Between(1,5);
        {
            for (let x = left; x < right; x++)
            {
-               this.hitTexture.getPixel(x, y, gibs[i].pixel);
+               this.renderTexture.getPixel(x, y, gibs[i].pixel);
 
                //  If this pixel has an alpha > 0 then our bullet hit the texture
                if (gibs[i].pixel.alpha > 0)

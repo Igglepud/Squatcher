@@ -30,10 +30,23 @@ forestHuntScene.create = function(){
   this.animations('squatch');
 this.createForest();
 //scope or minimap
-this.scope=this.add.circle(300, 500, 200, 0x000000);
-this.scopeCam=this.cameras.add(0, 0, 1600, 0);
+
+this.scope= this.make.graphics();
+this.scope.fillStyle(0xff0000);
+this.scope.fillCircle(this.gameW/2,this.gameH/2,200);
+this.scopeCam=this.cameras.add(this.gameW/2, this.gameH/2, 600, 600);
 this.scopeCam.zoom=3;
-this.cameras.main.ignore(this.scope);
+
+this.rect=this.add.rectangle(this.gameW/2,this.gameH/2,10000,10000,0xff0000)
+this.rect.depth=101;
+
+//this.mask = this.scope.createGeometryMask();
+//this.rect.invertAlpha=true;
+//this.rect.setMask(this.mask);
+
+this.cameras.main.ignore(this.rect);
+
+
 };
 
 
@@ -72,15 +85,20 @@ if(this.cameras.main.zoom<1.6&&this.cameras.main.zoom>1.4){this.hunter.depth=7};
 if(this.cameras.main.zoom<1.4&&this.cameras.main.zoom>1.2){this.hunter.depth=8};
 if(this.cameras.main.zoom<1.2){this.hunter.depth=100};
 if(this.hunter.depth<=this.squatch.depth&&this.spotted==false){this.squatch.visible=false}else{this.squatch.visible=true};
-if(this.scope.contains(this.squatch.x)){alert()};
-let allObjects = this.sys.displayList.getChildren();
-let numAllObjects=allObjects.length;
-for(i=0;i<numAllObjects;i++){
-  if(!this.scope.contains(allObjects[i].getBounds())){
-    this.scopeCam.ignore(allObjects[i])
 
-  };
-};
+
+
+
+
+
+
+
+
+
+
+
+
+this.sys.displayList.getChildren()
 
 iggleResize();
 };
