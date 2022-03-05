@@ -31,11 +31,10 @@ forestHuntScene.create = function(){
 this.createForest();
 //scope or minimap
 
-this.scope= this.make.graphics();
-this.scope.fillStyle(0xff0000);
-this.scope.fillCircle(this.gameW/2,this.gameH/2,200);
+this.scope= this.add.circle(this.gameW/2,this.gameH/2,50,0x000000)
 this.scopeCam=this.cameras.add(this.gameW/2, this.gameH/2, 600, 600);
 this.scopeCam.zoom=3;
+this.scope.depth=102;
 
 this.rect=this.add.rectangle(this.gameW/2,this.gameH/2,10000,10000,0xff0000)
 this.rect.depth=101;
@@ -45,8 +44,11 @@ this.rect.depth=101;
 //this.rect.setMask(this.mask);
 
 this.cameras.main.ignore(this.rect);
-
-
+this.cameras.main.ignore(this.scope);
+this.rect.mask = new Phaser.Display.Masks.BitmapMask(this, this.scope);
+this.rect.mask.invertAlpha=true;
+this.scope.visible=false;
+this.scopeCam.startFollow(this.crosshair);
 };
 
 
