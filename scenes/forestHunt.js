@@ -49,7 +49,7 @@ this.scope.visible=false;
 //move camera left and right
 forestHuntScene.update = function(){
 if(this.cursors.space.isDown){
-if(this.scopeCam==null){this.scopeCam=this.cameras.add(this.cameras.main.x+500, this.cameras.main.y+400, 400,400);
+if(this.scopeCam==null){this.scopeCam=this.cameras.add(this.cameras.main.x+500, this.cameras.main.y+400, 1600,900);
   this.scopeCam.zoom=3;
   this.scope.depth=102;
   this.cameras.main.zoom=2;
