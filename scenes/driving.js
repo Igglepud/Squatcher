@@ -60,7 +60,7 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
     this.bg3 = this.add.tileSprite(0,this.gameH-400, 5*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
 
    
-  
+  //this is how you truly randomize tweens
     // this.truckTween=this.tweens.add({
     //     targets: [ this.truck, ],
     //     x: {
