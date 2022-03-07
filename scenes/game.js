@@ -1,4 +1,45 @@
+   //start pixel deletion
 
+
+      //   //  Get the texture size
+      //   let width = cutPosX+cutWidth;
+      //   let height = cutPosY+cutHeight;
+
+      //   //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
+      // //   let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
+      // //   gibs[i].renderTexture = renderTexture;
+      //  let bounds = {left:cutPosX, right:x+cutWidth,top:cutPosY,bottom:cutPosY+cutHeight};
+     
+
+      // //  //  Floor because we're working with integers for pixel reading
+      //  const left =bounds.left;
+      //  const right =bounds.right;
+      //  const top = bounds.top;
+      //  const bottom = bounds.bottom;
+      
+
+      
+      // //  //  Scan each pixel
+      //  for (let y = bottom; y > height; y--)
+      //  {
+      //      for (let x = left; x < right; x++)
+      //      {
+      //     //  debugger;
+      //       let pixel = this.textures.getPixel(x, y, img.texture.key, img.frame.name);
+
+      //          //  If this pixel has an alpha > 0 then our bullet hit the texture
+      //          if (Phaser.Math.Between(3,3)==3)
+      //          {console.log(x,y)
+                  
+
+      //              //  Erase a bullet-sized chunk from the RenderTexture
+      //              if(pixel!=null&&pixel.alpha!=0){
+                   
+      //                pixel.alpha=0};
+      //          };
+      //       };
+      //    };
+//end pixel deletion
 
 let gameScene = new Phaser.Scene('Game');
 
@@ -146,6 +187,8 @@ this.blood.setScale(2);
 this.blood.depth=this.squatch.depth+1;
 this.blood.visible=false;
 this.squatch.setInteractive();
+
+//squatch on click
 this.squatch.on('pointerdown',function(){
    this.blood.visible=true;
 this.rifleSingleSound.play();
@@ -176,7 +219,14 @@ bloodNumber=Phaser.Math.Between(1,5);
             var cutPosX = x * cutWidth;
             var cutPosY = y * cutHeight;
             var img = this.add.sprite(this.squatch.x, this.squatch.y, 'squatchIdle', 'idle_0').setCrop(cutPosX, cutPosY, cutWidth, cutHeight).setPipeline('Light2D');
-        this.gibs.add(img);
+       
+       
+       
+       
+            this.gibs.add(img);
+
+
+
          }
     
 
@@ -186,44 +236,50 @@ bloodNumber=Phaser.Math.Between(1,5);
    for(i=0;i<numGibs;i++){
       gibs[i].depth=this.blood.depth-1;
 
-       //  The origin is the top-left of the bullet
-       let bx = gibs[i].x;
-       let by = gibs[i].y;
+    //start pixel deletion
 
-console.log(gibs[i]);
+
         //  Get the texture size
         let width = gibs[i].width;
         let height = gibs[i].height;
-let frame='squatch'
+
         //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
-        let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
-       let bounds = renderTexture.getBounds();
-       gibs[i].renderTexture = renderTexture;
+      //   let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
+      //   gibs[i].renderTexture = renderTexture;
+       let bounds = gibs[i].getBounds();
+       console.log(bounds)
 
-       //  Floor because we're working with integers for pixel reading
-       const left = Math.floor(Math.max(bounds.left, bx) - bounds.x);
-       const right = Math.floor(Math.min(bounds.right - 1, bx + width) - bounds.x);
-       const top = Math.floor(Math.max(bounds.top, by) - bounds.y);
-       const bottom = Math.floor(bounds.bottom - bounds.y - 1);
-       const knockback = Math.floor(height / 1.2);
+      //  //  Floor because we're working with integers for pixel reading
+       const left =bounds.left;
+       const right =bounds.right;
+       const top = bounds.top;
+       const bottom = bounds.bottom;
+       const {frame, texture } = gibs[i];
 
-       //  Scan each pixel for the size of the bullet
-       for (let y = bottom; y > top; y--)
+      
+      //  //  Scan each pixel
+       for (let y = height; y > 0; y--)
        {
-           for (let x = left; x < right; x++)
-           {
-               this.renderTexture.getPixel(x, y, gibs[i].pixel);
+           for (let x = 0; x < height; x++)
+           {console.log(gibs[i].width,gibs[i].height)
+          //  debugger;
+            let pixel = this.textures.getPixel(x, y, texture.key, frame.name);
 
                //  If this pixel has an alpha > 0 then our bullet hit the texture
-               if (gibs[i].pixel.alpha > 0)
+               if (Phaser.Math.Between(1,3)==3)
                {
-                   bx = Math.floor(bx - bounds.x);
+                  
 
                    //  Erase a bullet-sized chunk from the RenderTexture
-                   this.renderTexture.erase(this, bx, y - knockback);
+                   if(pixel!=null&&pixel.alpha!=0){
+                   
+                     pixel.alpha=0};
                };
             };
          };
+//end pixel deletion
+
+
       gibs[i].moveTween=this.tweens.add({
          targets:gibs[i],
           duration:Phaser.Math.Between(250,300),
@@ -287,7 +343,6 @@ if(this.x<this.scene.squatch.x){
 this.squatch.setPipeline('Light2D');
 this.theLight=this.lights.addLight(this.squatch.x+100,this.squatch.y,100,).setColor(0x111111).setIntensity(9);
 
-console.log(this.theLight);
 
 this.cursors=this.input.keyboard.createCursorKeys();
 
@@ -296,7 +351,6 @@ this.input.on('pointermove',function(pointer){
    this.theLight.y=pointer.worldY;
 },this)
 
-console.log(this.squatch)
 };
 
 gameScene.update = function(){
@@ -317,7 +371,7 @@ this.rifle.scaleX=this.squatch.scaleX;
 this.rifle.scaleY=this.squatch.scaleY;
 this.muzzleFlash.scaleX=this.squatch.scaleX;
 this.muzzleFlash.scaleY=this.squatch.scaleY;
-this.rifle.setPosition(this.squatch.x,this.squatch.y+20)
+this.rifle.setPosition(this.squatch.x,this.squatch.y+20);
 let shakeY =(Math.random()*10);
 let shakeX =(Math.random()*10);
 this.flash=this.lights.addLight(this.muzzleFlash.x,this.muzzleFlash.y,400,).setColor(0xfffff).setIntensity(0);
@@ -417,7 +471,6 @@ const scaleRange = 30 / (maxY - minY);
 if(this.cursors.up.isDown){this.squatch.y--}
 if(this.cursors.down.isDown){this.squatch.y++}
 if(this.squatch.scaleX<1){this.squatch.depth=-97}
-
 
 };
 

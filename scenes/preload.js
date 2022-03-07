@@ -22,5 +22,5 @@ this.iggleLoadingScreen('Loading required assets...')
 };
 
 preloadScene.create=function(){
-    this.scene.start('ForestHunt');
+    this.scene.start('Driving');
 };
