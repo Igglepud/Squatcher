@@ -40,6 +40,7 @@ drivingScene.create = function(){
      cloud.setPipeline('Light2D');
      cloud.setDepth(Phaser.Math.Between(1,5));
      cloud.setScale(Math.random()*Math.random());
+     if(Phaser.Math.Between(1,2)==2){cloud.flipX=true;}else{cloud.flipX=false};
      this.clouds.add(cloud);
 
 
@@ -69,9 +70,9 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
     this.sky=this.add.tileSprite(0,this.gameH/2-200, 5*4093, 1*2894,'sky').setDepth(-99).setScale(.3).setPipeline('Light2D');
 
 
-    this.lights.enable().setAmbientColor('0x000000');
-    this.sun=this.lights.addLight(1800,450,10000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
-    this.sun2=this.lights.addLight(0,450,10000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
+    this.lights.enable().setAmbientColor('0xffffff');
+   this.sun=this.lights.addLight(0,0,1000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
+   // this.sun2=this.lights.addLight(0,450,10000000).setColor(0xffffff).setIntensity(Phaser.Math.Between(1,2));
     this.bg1 = this.add.tileSprite(0,this.gameH-50, 5*4093, 1*1340, 'bg1').setScale(.25).setDepth(6).setPipeline('Light2D') ; 
     this.bg2 = this.add.tileSprite(0,this.gameH-200, 5*3403, 1*2046, 'bg2').setScale(.25).setDepth(5).setPipeline('Light2D') ; 
     this.bg3 = this.add.tileSprite(0,this.gameH-400, 5*7265, 1*2446, 'bg3').setScale(.25).setDepth(4).setPipeline('Light2D') ; 
@@ -79,68 +80,68 @@ this.chickenLeg=this.add.sprite(this.hunterArm.x,this.hunterArm.y,'chickenLeg').
    
    
   //this is how you truly randomize tweens
-    // this.truckTween=this.tweens.add({
-    //     targets: [ this.truck, ],
-    //     x: {
+    this.truckTween=this.tweens.add({
+        targets: [ this.truck, ],
+        x: {
 
-    //         getEnd: function (target, key, value)
-    //         {
-    //             return value + Phaser.Math.Between(-15, 15);
-    //         }
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
 
-    //     },
-    //     y: {
+        },
+        y: {
 
-    //         getEnd: function (target, key, value)
-    //         {
-    //             return value + Phaser.Math.Between(-15, 15);
-    //         }
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
 
-    //     },
-    //     angle:{
-    //         getEnd: function (target, key, value)
-    //         {
-    //             return value + Phaser.Math.Between(-45, 45);
-    //         }
-    //     },
-    //     ease: 'Power1',
-    //     duration: 35,
-    //     yoyo: true,
-    //     repeat: -1
-    // });
-    // this.truckBackTween=this.tweens.add({
-    //     targets: [ this.truckback, ],
-    //     x: this.truck.x-126,
-    //     y: this.truck.y-28,
-    //     angle:this.truck.angle,
-    //     ease: 'Power1',
-    //     duration: 35,
-    //     yoyo: true,
-    //     repeat: -1
-    // });
-    // this.wheelsTween=this.tweens.add({
-    //     targets: [ this.leftWheel,this.rightWheel ],
-    //     x: {
+        },
+        // angle:{
+        //     getEnd: function (target, key, value)
+        //     {
+        //         return value + Phaser.Math.Between(-45, 45);
+        //     }
+        // },
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
+    this.truckBackTween=this.tweens.add({
+        targets: [ this.truckback, ],
+        x: this.truck.x-126,
+        y: this.truck.y-28,
+        //angle:this.truck.angle,
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
+    this.wheelsTween=this.tweens.add({
+        targets: [ this.leftWheel,this.rightWheel ],
+        x: {
 
-    //         getEnd: function (target, key, value)
-    //         {
-    //             return value + Phaser.Math.Between(-15, 15);
-    //         }
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 15);
+            }
 
-    //     },
-    //     y: {
+        },
+        y: {
 
-    //         getEnd: function (target, key, value)
-    //         {
-    //             return value + Phaser.Math.Between(-15, 0);
-    //         }
+            getEnd: function (target, key, value)
+            {
+                return value + Phaser.Math.Between(-15, 0);
+            }
 
-    //     },
-    //     ease: 'Power1',
-    //     duration: 35,
-    //     yoyo: true,
-    //     repeat: -1
-    // });
+        },
+        ease: 'Power1',
+        duration: 35,
+        yoyo: true,
+        repeat: -1
+    });
 
     // this.armTween=this.tweens.add({
     //     targets: [ this.hunterArm, ],
@@ -163,14 +164,15 @@ this.streetLine=this.add.tileSprite(this.truck.x,this.road.y-50, 20*128,1*128, '
 };
 
 drivingScene.update = function(){
- this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=.2;this.bg3.tilePositionX+=.01;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
+ 
+ //move background and road
+  this.bg1.tilePositionX+=10; this.bg2.tilePositionX+=.2;this.bg3.tilePositionX+=.01;//this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
 this.streetLine.tilePositionX+=12;
 
 //if(this.sun.y<-1000&&this.falling==false){this.sun.x++,this.sun.y++, this.falling=true;}else{this.sun.x++,this.sun.y--};
 this.truckback.setPosition(this.truck.x-126,this.truck.y-28);
 this.hunter.setPosition(this.truck.x+5,this.truck.y-35);
 this.hunterArm.setPosition(this.hunter.x-10,this.hunter.y+10);
-this.chickenLeg.setPosition(this.hunterArm.x+20, this.hunterArm.y+10);
    this.leftWheel.rotation+=.3;
    this.rightWheel.rotation+=.3;
    
@@ -178,9 +180,10 @@ let clouds=this.clouds.getChildren();
 let numClouds=clouds.length;
 for(i=0;i<numClouds;i++){
 
-  if(clouds[i].x<-300){
+  if(clouds[i].x<-600){
 clouds[i].setPosition(2000, Phaser.Math.Between(0,300)).setScale(Math.random()*Math.random());
-  clouds[i].body.setVelocityX(Phaser.Math.Between(-800,-50));
+if(Phaser.Math.Between(1,2)==2){clouds[i].flipX=true;}else{clouds[i].flipX=false};  
+clouds[i].body.setVelocityX(Phaser.Math.Between(-800,-50));
 
 
 };
