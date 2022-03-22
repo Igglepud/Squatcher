@@ -449,5 +449,4 @@ this.lightsMaskRect.fillRect(
   iggleResize();
 
 if(this.policeActive==false){this.red.alpha=0;this.blue.alpha=0};
-console.log(game)
 };;
