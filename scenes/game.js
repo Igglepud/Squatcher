@@ -1,46 +1,3 @@
-   //start pixel deletion
-
-
-      //   //  Get the texture size
-      //   let width = cutPosX+cutWidth;
-      //   let height = cutPosY+cutHeight;
-
-      //   //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
-      // //   let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
-      // //   gibs[i].renderTexture = renderTexture;
-      //  let bounds = {left:cutPosX, right:x+cutWidth,top:cutPosY,bottom:cutPosY+cutHeight};
-     
-
-      // //  //  Floor because we're working with integers for pixel reading
-      //  const left =bounds.left;
-      //  const right =bounds.right;
-      //  const top = bounds.top;
-      //  const bottom = bounds.bottom;
-      
-
-      
-      // //  //  Scan each pixel
-      //  for (let y = bottom; y > height; y--)
-      //  {
-      //      for (let x = left; x < right; x++)
-      //      {
-      //     //  debugger;
-      //       let pixel = this.textures.getPixel(x, y, img.texture.key, img.frame.name);
-
-      //          //  If this pixel has an alpha > 0 then our bullet hit the texture
-      //          if (Phaser.Math.Between(3,3)==3)
-      //          {console.log(x,y)
-                  
-
-      //              //  Erase a bullet-sized chunk from the RenderTexture
-      //              if(pixel!=null&&pixel.alpha!=0){
-                   
-      //                pixel.alpha=0};
-      //          };
-      //       };
-      //    };
-//end pixel deletion
-
 let gameScene = new Phaser.Scene('Game');
 
 gameScene.init = function(){
@@ -61,12 +18,21 @@ this.load.atlas('blood5', ['assets/sprites/blood/Front_13.png','assets/sprites/b
 this.load.image('sky5', 'assets/backgrounds/forestHunt/Sky05.png');
 this.load.unityAtlas('squatch2', 'assets/sprites/squatch/character_idle.png','assets/sprites/squatch/character_idle.png.meta');
  this.iggleLoadingScreen('Loading Sandbox...')
+
+
+this.load.audio('headsplosion','assets/sounds/headsplosion.wav')
+
+
+
 }
 
    
 
 
 gameScene.create = function(){
+this.headsplosionSound = this.sound.add("headsplosion");
+
+
     //create idle animations
     this.anims.create({
       key: 'squatch2Idle',
@@ -95,7 +61,8 @@ gameScene.create = function(){
           frameRate: 15
       });
 
-   this.lights.enable().setAmbientColor(0x000000);
+   this.lights.enable().setAmbientColor(0xffffff);
+   
    this.anims.create({
       key:'bleed1',
       frames: this.anims.generateFrameNames('blood1', { prefix: 'bleed_', start:0,end: 57 }),
@@ -169,17 +136,7 @@ this.muzzleFlash.visible=false;
 this.muzzleFlash.depth=3;
 this.rifle.visible=false;
 
-// this.anims.create({
-//    key: 'bleed',
-//    frames: this.anims.generateFrameNames('blood', {
-//        prefix: 'bleed',
-//        start: 0,
-//        end: 57,
-//        zeroPad: 5,
-//        frameRate:2,
-       
-//    })
-// });
+
 
 var bloodNumber=Phaser.Math.Between(1,5);
 this.blood=this.add.sprite(this.squatch.x,this.squatch.y+250,'blood'+bloodNumber);
@@ -190,154 +147,179 @@ this.squatch.setInteractive();
 
 //squatch on click
 this.squatch.on('pointerdown',function(){
-   this.blood.visible=true;
-this.rifleSingleSound.play();
+  this.blood.visible = true;
+  this.rifleSingleSound.play();
 
-if(bloodNumber==3){this.blood.setPosition(this.squatch.x+50,this.squatch.y+150)}
-else if(bloodNumber==2){this.blood.setPosition(this.squatch.x+125,this.squatch.y+125)}
-else{this.blood.setPosition(this.squatch.x,this.squatch.y+200)};
-this.blood.setScale(2);
-this.blood.depth=this.squatch.depth+1;
-this.blood.setPipeline('Light2D');
-this.blood.play('bleed'+bloodNumber);
-if( this.squatch.moveTween){ this.squatch.moveTween.stop()};
-this.squatch.play('squatchHeadShot');
-bloodNumber=Phaser.Math.Between(1,5);
-//gib squatch thanks to Phaser Discord: Dennis Gedai Eichert
+  if (bloodNumber == 3) {
+    this.blood.setPosition(this.squatch.x + 50, this.squatch.y + 150);
+  } else if (bloodNumber == 2) {
+    this.blood.setPosition(this.squatch.x + 125, this.squatch.y + 125);
+  } else {
+    this.blood.setPosition(this.squatch.x, this.squatch.y + 200);
+  }
+  this.blood.setScale(2);
+  this.blood.depth = this.squatch.depth + 1;
+  this.blood.setPipeline("Light2D");
+  this.blood.play("bleed" + bloodNumber);
+  if (this.squatch.moveTween) {
+    this.squatch.moveTween.stop();
+  }
+  this.squatch.play("squatchHeadShot");
+  bloodNumber = Phaser.Math.Between(1, 5);
+  //gib squatch thanks to Phaser Discord: Dennis Gedai Eichert
 
+ // start pixel deletion
+//   let src = ('squatchIdle');
 
+// let renderTexture = this.add.renderTexture(this.squatch.x-180, this.squatch.y-150, 360, 300).draw(src);
 
-   
-   let xCutCount = Phaser.Math.Between(5,32);
-    let yCutCount=Phaser.Math.Between(5,32);
-    let cutImages = [];
-    let sourceTexture = this.textures.list['squatchIdle'].frames['idle_0'];
-    let cutWidth = sourceTexture.width / xCutCount;
-    let cutHeight = sourceTexture.height / yCutCount/2;
-    for (var y = 0; y < yCutCount; y++) {
-        for (var x = 0; x < xCutCount; x++) {
-            var cutPosX = x * cutWidth;
-            var cutPosY = y * cutHeight;
-            var img = this.add.sprite(this.squatch.x, this.squatch.y, 'squatchIdle', 'idle_0').setCrop(cutPosX, cutPosY, cutWidth, cutHeight).setPipeline('Light2D');
-       
-       
-       
-       
-            this.gibs.add(img);
-
-
-
-         }
-    
-
-      };
-   let gibs=this.gibs.getChildren();
-   let numGibs=gibs.length;
-   for(i=0;i<numGibs;i++){
-      gibs[i].depth=this.blood.depth-1;
-
-    //start pixel deletion
-
-
-        //  Get the texture size
-        let width = gibs[i].width;
-        let height = gibs[i].height;
-
-        //  Create a Render Texture to draw our image to, which we can destroy bit by bit and draw the texture to it
-      //   let renderTexture = this.add.renderTexture(gibs[i].x, gibs[i].y, width, height).draw(frame);
-      //   gibs[i].renderTexture = renderTexture;
-       let bounds = gibs[i].getBounds();
-       console.log(bounds)
-
-      //  //  Floor because we're working with integers for pixel reading
-       const left =bounds.left;
-       const right =bounds.right;
-       const top = bounds.top;
-       const bottom = bounds.bottom;
-       const {frame, texture } = gibs[i];
-
-      
-      //  //  Scan each pixel
-       for (let y = height; y > 0; y--)
-       {
-           for (let x = 0; x < height; x++)
-           {console.log(gibs[i].width,gibs[i].height)
-          //  debugger;
-            let pixel = this.textures.getPixel(x, y, texture.key, frame.name);
-
-               //  If this pixel has an alpha > 0 then our bullet hit the texture
-               if (Phaser.Math.Between(1,3)==3)
-               {
-                  
-
-                   //  Erase a bullet-sized chunk from the RenderTexture
-                   if(pixel!=null&&pixel.alpha!=0){
-                   
-                     pixel.alpha=0};
-               };
-            };
-         };
-//end pixel deletion
-
-
-      gibs[i].moveTween=this.tweens.add({
-         targets:gibs[i],
-          duration:Phaser.Math.Between(250,300),
-         yoyo:false,
-          y:this.squatch.y-Phaser.Math.Between(50,300),
-          x:this.squatch.x+Phaser.Math.Between(-350,350),
-         angle:gibs[i].rotation+Phaser.Math.Between(-90,90),
-          delay:0,
-          repeat:0,
-          //ease:'Stepped',
-          callbackScope:gibs[i],
-         onComplete:function(){
-
+//    let canvas = this.textures
+//      .createCanvas("map", 360, 300)
+//      .drawFrame(this.squatch.x-180, this.squatch.y-150, src);
             
-if(this.x<this.scene.squatch.x){
-            this.moveTween=this.scene.tweens.add({
-               targets:this,
-                duration:Phaser.Math.Between(500,600),
-               yoyo:false,
-                y:this.scene.squatch.y+Phaser.Math.Between(100,150),
-                x:this.x+Phaser.Math.Between(-150,-50),
-                delay:0,
-                repeat:0,
-                callbackScope:this.scene,
-                ease:Phaser.Math.Easing.Bounce.Out,
+// console.log(canvas)
+
+// let pixel = new Phaser.Display.Color();
+
+// for (var y = 0; y < 300; y++) {
+//   for (var x = 0; x < 360; x++) {
+//      if (Phaser.Math.Between(1, 3) == 3) {
+// continue     }
+//     canvas.getPixel(x, y, pixel);
+//     renderTexture.erase(renderTexture,x,y)
+//      }
+//     }
+//rectangle vaporization
+   //  if (pixel.a > 0) {
+   //        rect.moveTween = this.tweens.add({
+   //          targets: rect,
+   //          duration: Phaser.Math.Between(250, 300),
+   //          yoyo: false,
+   //          y: this.squatch.y - Phaser.Math.Between(50, 300),
+   //          x: this.squatch.x + Phaser.Math.Between(-350, 350),
+   //          angle: rect.rotation + Phaser.Math.Between(-90, 90),
+   //          delay: 0,
+   //          repeat: 0,
+   //          //ease:'Stepped',
+   //          callbackScope: rect,
+   //          onComplete: function () {
+   //             console.log(this)
+   //            if (this.x < this.scene.squatch.x) {
+   //              this.moveTween = this.scene.tweens.add({
+   //                targets: this,
+   //                duration: Phaser.Math.Between(500, 600),
+   //                yoyo: false,
+   //                y: this.scene.squatch.y + Phaser.Math.Between(100, 150),
+   //                x: this.x + Phaser.Math.Between(-150, -50),
+   //                delay: 0,
+   //                repeat: 0,
+   //                callbackScope: this.scene,
+   //                ease: Phaser.Math.Easing.Bounce.Out,
+   //                // onComplete:function(){this.restart()}
+   //              });
+                
+   //            } else {
+   //              this.moveTween = this.scene.tweens.add({
+   //                targets: this,
+   //                duration: Phaser.Math.Between(500, 600),
+   //                yoyo: false,
+   //                y: this.scene.squatch.y + Phaser.Math.Between(100, 150),
+   //                x: this.x + Phaser.Math.Between(50, 150),
+   //                delay: 0,
+   //                repeat: 0,
+   //                callbackScope: this.scene,
+   //                ease: Phaser.Math.Easing.Bounce.Out,
+   //                // onComplete:function(){this.restart()}
+   //              });
+                
+   //            }
+   //          },
+   //        });
+      
+   //  }
+  
+//   }
+// }
+ //end vapoization
+//start gibs
+  let xCutCount = Phaser.Math.Between(5, 32);
+  let yCutCount = Phaser.Math.Between(5, 32);
+  let cutImages = [];
+  let sourceTexture = this.textures.list["squatchIdle"].frames["idle_0"];
+  let cutWidth = sourceTexture.width / xCutCount;
+  let cutHeight = sourceTexture.height / yCutCount / 2;
+  for (var y = 0; y < yCutCount; y++) {
+    for (var x = 0; x < xCutCount; x++) {
+      var cutPosX = x * cutWidth;
+      var cutPosY = y * cutHeight;
+      var img = this.add
+        .sprite(this.squatch.x, this.squatch.y, "squatchIdle", "idle_0")
+        .setCrop(cutPosX, cutPosY, cutWidth, cutHeight)
+        .setPipeline("Light2D");
+
+      this.gibs.add(img);
+    }
+  }
+  let gibs = this.gibs.getChildren();
+  let numGibs = gibs.length;
+  for (i = 0; i < numGibs; i++) {
+    gibs[i].depth = this.blood.depth - 1;
+  
+//play sound
+this.headsplosionSound.play();
+//endSound
+
+//tween gibs
+    gibs[i].moveTween = this.tweens.add({
+      targets: gibs[i],
+      duration: Phaser.Math.Between(250, 300),
+      yoyo: false,
+      y: this.squatch.y - Phaser.Math.Between(50, 300),
+      x: this.squatch.x + Phaser.Math.Between(-350, 350),
+      angle: gibs[i].rotation + Phaser.Math.Between(-90, 90),
+      delay: 0,
+      repeat: 0,
+      //ease:'Stepped',
+      callbackScope: gibs[i],
+      onComplete: function () {
+        if (this.x < this.scene.squatch.x) {
+          this.moveTween = this.scene.tweens.add({
+            targets: this,
+            duration: Phaser.Math.Between(500, 600),
+            yoyo: false,
+            y: this.scene.squatch.y + Phaser.Math.Between(100, 150),
+            x: this.x + Phaser.Math.Between(-150, -50),
+            delay: 0,
+            repeat: 0,
+            callbackScope: this.scene,
+            ease: Phaser.Math.Easing.Bounce.Out,
             // onComplete:function(){this.restart()}
-            
-            });
-            this.scene.gibs.remove(this);
-          }
-         else{
-            this.moveTween=this.scene.tweens.add({
-               targets:this,
-                duration:Phaser.Math.Between(500,600),
-               yoyo:false,
-                y:this.scene.squatch.y+Phaser.Math.Between(100,150),
-                x:this.x+Phaser.Math.Between(50,150),
-                delay:0,
-                repeat:0,
-                callbackScope:this.scene,
-                ease:Phaser.Math.Easing.Bounce.Out,
-               // onComplete:function(){this.restart()}
-
-             
-            
-            });
-            this.scene.gibs.remove(this);
-
-         };
-    
-         },
-      
-      });
+          });
+          this.scene.gibs.remove(this);
+        } else {
+          this.moveTween = this.scene.tweens.add({
+            targets: this,
+            duration: Phaser.Math.Between(500, 600),
+            yoyo: false,
+            y: this.scene.squatch.y + Phaser.Math.Between(100, 150),
+            x: this.x + Phaser.Math.Between(50, 150),
+            delay: 0,
+            repeat: 0,
+            callbackScope: this.scene,
+            ease: Phaser.Math.Easing.Bounce.Out,
+            // onComplete:function(){this.restart()}
+          });
+          this.scene.gibs.remove(this);
+        }
+      },
+    });
+  }
 
 
-   };
-   
-   },this);
+
+
+  //end gibs
+},this);
 
 //lights
 this.squatch.setPipeline('Light2D');
@@ -457,7 +439,7 @@ const maxY=600;
 const minY=400;
 const scaleRange = 30 / (maxY - minY);
 
-//  Store our carousel images in here
+//  scale based on Y value
 
 
 //  this.squatch.setScale(1 + scaleRange * (this.squatch.y - minY));

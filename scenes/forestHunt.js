@@ -12,6 +12,7 @@ forestHuntScene.init=function(){
   this.cameraBobX=Phaser.Math.Between(-15,15);
   this.cameraRotationBob=Phaser.Math.Between(-1,1);
   this.spotted=false;
+   this.daytime = Phaser.Math.Between(2, 2);
 };
 
 
@@ -21,28 +22,41 @@ forestHuntScene.preload=function(){
 
 this.loadForest();
   this.iggleLoadingScreen('Loading forest...');
-
+this.load.audio('headsplosion','assets/sounds/headsplosion.wav')
 
 
 };
-// create after preload
+
 forestHuntScene.create = function(){
-  this.animations('squatch');
-this.createForest();
-//scope or minimap
+  // create after preload
+  this.headsplosionSound = this.sound.add("headsplosion");
+  this.ambianceSound = this.sound.add("ambiance", { loop: true });
+  this.animations("squatch");
+  this.createForest();
+  //scope or minimap
 
-this.scope= this.add.circle(this.cameras.main.x+700,this.cameras.main.y+600,200,0x000000)
-this.scopeCam=this.cameras.add(this.cameras.main.x+500, this.cameras.main.y+400, 400,400);
-this.scopeCam.zoom=3;
-this.scope.depth=102;
-this.cameras.main.zoom=2;
+  this.scope = this.add.circle(
+    this.cameras.main.x + 700,
+    this.cameras.main.y + 600,
+    200,
+    0x000000
+  );
+  this.scopeCam = this.cameras.add(
+    this.cameras.main.x + 500,
+    this.cameras.main.y + 400,
+    400,
+    400
+  );
+  this.scopeCam.zoom = 3;
+  this.scope.depth = 102;
+  this.cameras.main.zoom = 2;
 
-this.scopeCam.setMask(new Phaser.Display.Masks.BitmapMask(this, this.scope));
-//this.scopeCam.setBounds(-600,0,2000,625);
-//this.scopeCam.mask.invertAlpha=true;
-this.scopeCam.startFollow(this.crosshair);
-this.scope.visible=false;
-
+  this.scopeCam.setMask(new Phaser.Display.Masks.BitmapMask(this, this.scope));
+  //this.scopeCam.setBounds(-600,0,2000,625);
+  //this.scopeCam.mask.invertAlpha=true;
+  this.scopeCam.startFollow(this.crosshair);
+  this.scope.visible = false;
+  this.ambianceSound.play();
 };
 
 

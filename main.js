@@ -14,6 +14,10 @@ window.onload = function() {
         h = window.innerHeight;
     };
 };
+
+
+
+
 let config = {
     type: Phaser.WEBGL,
     width: w,
@@ -26,7 +30,7 @@ let config = {
         default: 'arcade',
         arcade: {
             gravity: {y: 1000},
-           // debug: true,
+            //debug: true,
         }
     },
 
