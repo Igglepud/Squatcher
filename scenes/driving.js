@@ -6,7 +6,7 @@ drivingScene.init = function () {
   this.iggleLoad = iggleLoadCopySpriteAtlas;
   this.iggleAnimations = iggleAnimations;
   this.loadingScreen = iggleLoadingScreen;
-  this.policeActive=false;
+  this.policeActive = false;
 };
 
 drivingScene.preload = function () {
@@ -90,7 +90,7 @@ drivingScene.preload = function () {
 };
 
 drivingScene.create = function () {
-  this.speed=0;
+  this.speed = 0;
   //make clouds
   this.clouds = this.add.group();
   for (i = 0; i < Phaser.Math.Between(3, 15); i++) {
@@ -161,8 +161,7 @@ drivingScene.create = function () {
     .setAngle(180)
     .setPosition(this.hunterArm.x + 20, this.hunterArm.y + 10);
   this.policeCar = this.add.sprite(1600, 850, "policeCar").setDepth(99);
-  
-  
+
   this.pWheel1 = this.add
     .sprite(this.policeCar.x - 100, this.policeCar.y + 30, "wheels2", "wheel_1")
     .setDepth(100);
@@ -170,12 +169,11 @@ drivingScene.create = function () {
     .sprite(this.policeCar.x + 128, this.policeCar.y + 30, "wheels2", "wheel_1")
     .setDepth(100);
 
-
   this.red = this.add
     .sprite(this.policeCar.x - 15, this.policeCar.y - 60, "redLight")
     .setDepth(102)
     .setBlendMode(Phaser.BlendModes.ADD)
-    .setScale(1.5)
+    .setScale(1.5);
   this.blue = this.add
     .sprite(this.policeCar.x - 15, this.policeCar.y - 60, "blueLight")
     .setDepth(102)
@@ -183,18 +181,21 @@ drivingScene.create = function () {
     .setAlpha(0)
     .setScale(1.5);
   this.lightsMaskRect = this.add
-    .graphics().fillRect(
-      this.red.x-this.red.frame.width/2,
+    .graphics()
+    .fillRect(
+      this.red.x - this.red.frame.width / 2,
       this.red.y,
       this.red.width,
-      this.red.height,
-    ).setDepth(102).setDefaultStyles({fillStyle:0xffffff}).setVisible(false);
-   this.lightMask = this.lightsMaskRect
-     .createGeometryMask()
-     .setInvertAlpha(true);
-this.red.setMask(this.lightMask);
-this.blue.setMask(this.lightMask);
-
+      this.red.height
+    )
+    .setDepth(102)
+    .setDefaultStyles({ fillStyle: 0xffffff })
+    .setVisible(false);
+  this.lightMask = this.lightsMaskRect
+    .createGeometryMask()
+    .setInvertAlpha(true);
+  this.red.setMask(this.lightMask);
+  this.blue.setMask(this.lightMask);
 
   //   this.red.movementTween=this.tweens.add({
   // targets:this.red,
@@ -224,12 +225,12 @@ this.blue.setMask(this.lightMask);
     },
     callbackScope: this,
   });
-this.wholePoliceCar = this.add.container();
-this.physics.add.existing(this.wholePoliceCar);
-this.wholePoliceCar.body.allowGravity = false;
-this.wholePoliceCar.body.velocity.x = -800;
+  this.wholePoliceCar = this.add.container();
+  this.physics.add.existing(this.wholePoliceCar);
+  this.wholePoliceCar.body.allowGravity = false;
+  this.wholePoliceCar.body.velocity.x = -800;
   this.wholePoliceCar
-    .add([this.pWheel1, this.pWheel2, this.policeCar,])
+    .add([this.pWheel1, this.pWheel2, this.policeCar])
     .setDepth(101);
 
   //create backgrounds
@@ -359,10 +360,10 @@ this.wholePoliceCar.body.velocity.x = -800;
 
 drivingScene.update = function () {
   //move background and road
-  this.bg1.tilePositionX += this.speed/2 + 20;
-  this.bg2.tilePositionX += this.speed/5 + 1.2;
-  this.bg3.tilePositionX += this.speed/10 + 0.1; //this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
-  this.streetLine.tilePositionX += this.speed/6+12;
+  this.bg1.tilePositionX += this.speed / 2 + 20;
+  this.bg2.tilePositionX += this.speed / 5 + 1.2;
+  this.bg3.tilePositionX += this.speed / 10 + 0.1; //this.bg1Copy.x-=10;this.bg2.x-=10;this.bg2Copy.x-=10;this.bg3.x-=.01;this.bg3Copy.x-=.01;
+  this.streetLine.tilePositionX += this.speed / 6 + 12;
 
   //if(this.sun.y<-1000&&this.falling==false){this.sun.x++,this.sun.y++, this.falling=true;}else{this.sun.x++,this.sun.y--};
   this.truckback.setPosition(this.truck.x - 126, this.truck.y - 28);
@@ -402,10 +403,20 @@ drivingScene.update = function () {
   if (this.cursors.right.isDown) {
     this.speed++;
   }
-  if(this.speed<0){this.speed=0};
-  if(this.speed>300){this.speed=300};
-  if (this.wholePoliceCar.x<-600) {this.policeActive=true;}
-  if(this.wholePoliceCar.x<-2000&&this.policeActive==true&&this.cameras.main.zoom!=.7){
+  if (this.speed < 0) {
+    this.speed = 0;
+  }
+  if (this.speed > 300) {
+    this.speed = 300;
+  }
+  if (this.wholePoliceCar.x < -600) {
+    this.policeActive = true;
+  }
+  if (
+    this.wholePoliceCar.x < -2000 &&
+    this.policeActive == true &&
+    this.cameras.main.zoom != 0.7
+  ) {
     this.cameras.main.movementTween = this.tweens.add({
       targets: this.cameras.main,
       duration: 2000,
@@ -422,31 +433,35 @@ drivingScene.update = function () {
       duration: 2000,
       y: this.wholeTruck.y + 50,
     });
-    this.wholePoliceCar.body.velocity.x=0;
-     this.wholePoliceCar.movementTween = this.tweens.add({
-       targets: this.wholePoliceCar,
-       duration: 3000,
-       y: this.wholeTruck.y,
-       x:this.wholeTruck.x-1500,
-      
-     });
+    this.wholePoliceCar.body.velocity.x = 0;
+    this.wholePoliceCar.movementTween = this.tweens.add({
+      targets: this.wholePoliceCar,
+      duration: 3000,
+      y: this.wholeTruck.y,
+      x: this.wholeTruck.x - 1500,
+    });
   }
 
-this.red.setPosition(this.wholePoliceCar.x + 1580, this.wholePoliceCar.y + 795);
-this.blue.setPosition(this.red.x, this.red.y);
-this.lightsMaskRect.clear();
+  this.red.setPosition(
+    this.wholePoliceCar.x + 1580,
+    this.wholePoliceCar.y + 795
+  );
+  this.blue.setPosition(this.red.x, this.red.y);
+  this.lightsMaskRect.clear();
 
-this.lightsMaskRect.fillRect(
-  this.red.x - this.red.width,
-  this.red.y,
-  this.red.width*2,
-  this.red.frame.height
-).setVisible(false);
-
-
-
+  this.lightsMaskRect
+    .fillRect(
+      this.red.x - this.red.width,
+      this.red.y,
+      this.red.width * 2,
+      this.red.frame.height
+    )
+    .setVisible(false);
 
   iggleResize();
 
-if(this.policeActive==false){this.red.alpha=0;this.blue.alpha=0};
-};;
+  if (this.policeActive == false) {
+    this.red.alpha = 0;
+    this.blue.alpha = 0;
+  }
+};

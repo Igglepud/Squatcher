@@ -12,7 +12,7 @@ forestHuntScene.init=function(){
   this.cameraBobX=Phaser.Math.Between(-15,15);
   this.cameraRotationBob=Phaser.Math.Between(-1,1);
   this.spotted=false;
-   this.daytime = Phaser.Math.Between(2, 2);
+   this.daytime = Phaser.Math.Between(1, 2);
 };
 
 
@@ -30,7 +30,6 @@ this.load.audio('headsplosion','assets/sounds/headsplosion.wav')
 forestHuntScene.create = function(){
   // create after preload
   this.headsplosionSound = this.sound.add("headsplosion");
-  this.ambianceSound = this.sound.add("ambiance", { loop: true });
   this.animations("squatch");
   this.createForest();
   //scope or minimap
@@ -56,7 +55,6 @@ forestHuntScene.create = function(){
   //this.scopeCam.mask.invertAlpha=true;
   this.scopeCam.startFollow(this.crosshair);
   this.scope.visible = false;
-  this.ambianceSound.play();
 };
 
 

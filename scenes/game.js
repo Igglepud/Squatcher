@@ -92,7 +92,7 @@ gameScene.create = function () {
     frameRate: 15,
   });
 
-  this.lights.enable().setAmbientColor(0x000000);
+  this.lights.enable().setAmbientColor(0x111111);
 
   this.anims.create({
     key: "bleed1",
@@ -168,6 +168,8 @@ gameScene.create = function () {
   this.iggleAnimations("squatch");
   this.squatch = this.physics.add.sprite(250, 400, "squatchIdle", "idle_0");
   this.squatch.body.enable = false;
+//this.squatch.setTint(0x111111);
+
   (this.squatch2 = this.add.sprite(400, 400)), "squatch2Idle", "idle_0)";
   this.squatch2.setPipeline("Light2D");
   this.squatch2.play("squatch2Idle");
@@ -178,7 +180,7 @@ gameScene.create = function () {
     this.squatch.y,
     "squatchRifle",
     "rifle_1"
-  );
+  )//.setTint(0x111111);
   this.squatchArm.depth = 2;
   this.squatchArm.visible = false;
   this.squatchArm.setPipeline("Light2D");
@@ -186,7 +188,7 @@ gameScene.create = function () {
     this.squatch.x,
     this.squatch.y + 20,
     "weaponRifle"
-  );
+  )//.setTint(0x111111);
   this.rifle.setPipeline("Light2D");
   this.rifle.depth = 1;
   this.muzzleFlash = this.add.sprite(
@@ -211,39 +213,44 @@ gameScene.create = function () {
   this.blood.visible = false;
   this.squatch.setInteractive();
   //delete pixels
-  let src = "squatchIdle";
+  //let src = "squatchIdle";
+
+  let sourceTextureKey = this.squatch.texture.key;
+  let sourceFrame = this.squatch.frame.name;
+  let src = this.sys.textures.getFrame(sourceTextureKey, sourceFrame);
   let renderTexture = this.add.renderTexture(0, 0, 360, 300).draw(src);
   //  let canvas = this.textures
   //    .createCanvas("map", 360, 300)
   //    .drawFrame(this.squatch.x - 180, this.squatch.y - 150, src);
-for (i = 0; i < this.textures.list.length; i++) {
-  if (this.textures.list[i].key == "erased") {
-    let first = i;
-  }
-  if (this.textures.list[i].key == "squatchIdle") {
-    let second = i;
-  }
-  if(first && second){
-    let source=this.textures.list[second].getDataSource();
-    
-    this.textures.list[first].setDataSource(source);
-  }
-}
+  for (i = 0; i < this.textures.list.length; i++) {
+    if (this.textures.list[i].key == "erased") {
+      let first = i;
+    }
+    if (this.textures.list[i].key == "squatchIdle") {
+      let second = i;
+    }
+    if (first && second) {
+      let source = this.textures.list[second].getDataSource();
 
-let pixel =this.textures.generate('1x1', { data: ['1'], pixelWidth: 1 });
-  for (var y = 0; y < 300; y++) {
-    for (var x = 0; x < 360; x++) {
-      if (Phaser.Math.Between(1, 4) != 4) {
-        continue;
-      }
-      renderTexture.erase('1x1', x, y);
+      this.textures.list[first].setDataSource(source);
     }
   }
 
-     renderTexture.saveTexture("erased");
-   
-     let source=this.textures.get("squatchIdle").getDataSourceImage();
-this.textures.get('erased').setDataSource(source);
+  let pixel = this.textures.generate("1x1", { data: ["1"], pixelWidth: 1 });
+  for (var y = 0; y < 300; y++) {
+    for (var x = 0; x < 360; x++) {
+      
+      if (Phaser.Math.Between(1, 4) != 4) {
+        continue;
+      }
+      renderTexture.erase("1x1", x, y);
+    }
+  }
+
+  renderTexture.saveTexture("erased");
+
+  let source = this.textures.get("squatchIdle").getDataSourceImage();
+  this.textures.get("erased").setDataSource(source);
   //end pixel delete
   //squatch on click
   this.squatch.on(
@@ -327,7 +334,6 @@ this.textures.get('erased').setDataSource(source);
       //start gibs
       let xCutCount = Phaser.Math.Between(5, 32);
       let yCutCount = Phaser.Math.Between(5, 32);
-      let cutImages = [];
       let sourceTexture = this.textures.list["erased"];
       let cutWidth = sourceTexture.width / xCutCount;
       let cutHeight = sourceTexture.height / yCutCount / 2;
@@ -420,6 +426,11 @@ this.textures.get('erased').setDataSource(source);
     },
     this
   );
+
+  this.squatchtainer=this.add.container();
+
+  this.squatchtainer.add([this.squatch, this.squatchArm]);
+  console.log(this.squatchtainer)
 };
 
 gameScene.update = function () {
@@ -546,4 +557,5 @@ gameScene.update = function () {
   if (this.squatch.scaleX < 1) {
     this.squatch.depth = -97;
   }
+
 };
